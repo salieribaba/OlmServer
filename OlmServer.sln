@@ -11,17 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{6D41E046-8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "external", "external", "{AE3EE4FF-EB3D-4162-8416-B85934662D73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlmServer.Application", "src\core\OlmServer.Application\OlmServer.Application.csproj", "{452DD024-F173-47A9-80E5-AEAF13081DB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OlmServer.Application", "src\core\OlmServer.Application\OlmServer.Application.csproj", "{452DD024-F173-47A9-80E5-AEAF13081DB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlmServer.Domain", "src\core\OlmServer.Domain\OlmServer.Domain.csproj", "{ACEDCD73-2330-4C23-85C7-2A911F373BDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OlmServer.Domain", "src\core\OlmServer.Domain\OlmServer.Domain.csproj", "{ACEDCD73-2330-4C23-85C7-2A911F373BDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlmServer.Infrastructure", "src\external\OlmServer.Infrastructure\OlmServer.Infrastructure.csproj", "{ACF70294-06A4-419B-875C-6540B9FD648C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OlmServer.Infrastructure", "src\external\OlmServer.Infrastructure\OlmServer.Infrastructure.csproj", "{ACF70294-06A4-419B-875C-6540B9FD648C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlmServer.Persistance", "src\external\OlmServer.Persistance\OlmServer.Persistance.csproj", "{AE43B132-EF43-43F9-AB27-801D4DB75520}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OlmServer.Persistance", "src\external\OlmServer.Persistance\OlmServer.Persistance.csproj", "{AE43B132-EF43-43F9-AB27-801D4DB75520}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlmServer.Presentation", "src\external\OlmServer.Presentation\OlmServer.Presentation.csproj", "{751CC7FB-95A3-4BB3-A473-71D1E84239C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OlmServer.Presentation", "src\external\OlmServer.Presentation\OlmServer.Presentation.csproj", "{751CC7FB-95A3-4BB3-A473-71D1E84239C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlmServer.WebApi", "src\OlmServer.WebApi\OlmServer.WebApi.csproj", "{474BCB45-415D-497B-9AB7-A6A2DA947376}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OlmServer.WebApi", "src\OlmServer.WebApi\OlmServer.WebApi.csproj", "{474BCB45-415D-497B-9AB7-A6A2DA947376}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
