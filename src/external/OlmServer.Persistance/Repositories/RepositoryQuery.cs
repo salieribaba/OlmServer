@@ -8,9 +8,13 @@ namespace OlmServer.Persistance.Repositories
 {
     public class RepositoryQuery<T> : IRepositoryQuery<T> where T : BaseEntity
     {
-        public static readonly Func<CompanyDbContext, string, Task<T>> GetEntityById =
-            EF.CompileAsyncQuery((CompanyDbContext context, string id) =>
-            context.Set<T>().FirstOrDefault(x => x.Id == id));
+
+        public static readonly Func<CompanyDbContext, string, bool, Task<T>> GetEntityById =
+         EF.CompileAsyncQuery((CompanyDbContext context, string id, bool isTracking) =>
+       isTracking == true ? context.Set<T>().FirstOrDefault(x => x.Id == id) :
+        context.Set<T>().AsNoTracking().FirstOrDefault(x => x.Id == id));
+
+
         private CompanyDbContext _context;
 
         public DbSet<T> Entity { get; set; }
@@ -21,29 +25,57 @@ namespace OlmServer.Persistance.Repositories
             Entity= _context.Set<T>();
         }
 
-        public IQueryable<T> GetAll()
+        public IQueryable<T> GetAll(bool isTracking = true)
         {
-            return Entity.AsQueryable();
+            if (isTracking)
+            {
+                return Entity.AsQueryable();
+            }
+            else
+            {
+                return Entity.AsNoTracking().AsQueryable();
+            }
         }
 
-        public IQueryable<T> GetAllWhere(Expression<Func<T, bool>> predicate)
+        public IQueryable<T> GetAllWhere(Expression<Func<T, bool>> predicate, bool isTracking = true)
         {
-            return Entity.Where(predicate).AsQueryable();
+            if (isTracking)
+            {
+                return Entity.Where(predicate).AsQueryable();
+            }
+            else
+            {
+                return Entity.Where(predicate).AsNoTracking().AsQueryable();
+            }
         }
 
-        public async Task<T> GetByExpressionAsync(Expression<Func<T, bool>> expression)
+        public async Task<T> GetByExpressionAsync(Expression<Func<T, bool>> expression, bool isTracking = true)
         {
-            return await Entity.FirstOrDefaultAsync(expression);
+            if (isTracking)
+            {
+                return await Entity.FirstOrDefaultAsync(expression);
+            }
+            else
+            {
+                return await Entity.AsNoTracking().FirstOrDefaultAsync(expression);
+            }
         }
 
-        public async Task<T> GetByIdAsync(string id)
+        public async Task<T> GetByIdAsync(string id, bool isTracking = true)
         {
-            return await GetEntityById(_context, id);
+            return await GetEntityById(_context, id, isTracking);
         }
 
-        public async Task<T> GetFirstAsync()
+        public async Task<T> GetFirstAsync(bool isTracking = true)
         {
-            return await Entity.FirstOrDefaultAsync();
+            if (isTracking)
+            {
+                return await Entity.FirstOrDefaultAsync();
+            }
+            else
+            {
+                return await Entity.AsNoTracking().FirstOrDefaultAsync();
+            }
         }
     }
 }

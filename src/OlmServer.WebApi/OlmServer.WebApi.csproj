@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\external\OlmServer.Infrastructure\OlmServer.Infrastructure.csproj" />
     <ProjectReference Include="..\external\OlmServer.Persistance\OlmServer.Persistance.csproj" />
     <ProjectReference Include="..\external\OlmServer.Presentation\OlmServer.Presentation.csproj" />
   </ItemGroup>

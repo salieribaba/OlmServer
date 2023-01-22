@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\OlmServer.Application\OlmServer.Application.csproj" />
+  </ItemGroup>
+
 </Project>
