@@ -19,6 +19,7 @@ namespace OlmServer.WebApi.Configurations
             _ = services.AddScoped<IUcafQueryRepository, UcafRepositoryQuery>();
             _ = services.AddScoped<IContextService, ContextService>();
             _ = services.AddScoped<IUcafService, UcafService>();
+            services.AddScoped<IRoleService, RoleService>();
 
         }
     }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using OlmServer.Presentation;
+using OlmServer.WebApi.Middlewares;
 
 namespace OlmServer.WebApi.Configurations
 {
@@ -8,6 +9,7 @@ namespace OlmServer.WebApi.Configurations
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
+            services.AddScoped<ExceptionMiddleware>();
             _ = services.AddControllers().AddApplicationPart(typeof(AssemblyReference).Assembly);
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
