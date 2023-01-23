@@ -15,17 +15,17 @@ namespace OlmServer.Presentation.Controller
 
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> CreateCompany(CompanyCreateRequest request)
+        public async Task<IActionResult> CreateCompany(CompanyCommandCreate request)
         {
-            CompanyCreateResponse response = await _mediator.Send(request);
+            CompanyCommandCreateResponse response = await _mediator.Send(request);
             return Ok(response);
         }
 
         [HttpGet("[action]")]
         public async Task<IActionResult> MigrateCompanyDatabases()
         {
-            MigrateCompanyDatabaseRequest request = new();
-            MigrateCompanyDatabaseResponse response = await _mediator.Send(request);
+            MigrateCommandCompanyDatabase request = new();
+            MigrateCommandCompanyDatabaseResponse response = await _mediator.Send(request);
             return Ok(response);
 
         }

@@ -1,19 +1,19 @@
-﻿using MediatR;
+﻿using OlmServer.Application.Messaging;
 using OlmServer.Application.Services.AppServices;
 using OlmServer.Domain.AppEntities.Identity;
 
 namespace OlmServer.Application.Features.AppFeatures.RoleFeatures.Commands.DeleteRole
 {
-    public sealed class DeleteRoleHandler : IRequestHandler<DeleteRoleRequest, DeleteRoleResponse>
+    public sealed class DeleteRoleCommandHandler : ICommandHandler<DeleteRoleCommand, DeleteRoleCommandResponse>
     {
         private readonly IRoleService _roleService;
 
-        public DeleteRoleHandler(IRoleService roleService = null)
+        public DeleteRoleCommandHandler(IRoleService roleService = null)
         {
             _roleService = roleService;
         }
 
-        public async Task<DeleteRoleResponse> Handle(DeleteRoleRequest request, CancellationToken cancellationToken)
+        public async Task<DeleteRoleCommandResponse> Handle(DeleteRoleCommand request, CancellationToken cancellationToken)
         {
             AppRole role = await _roleService.GetByCode(request.Id);
 

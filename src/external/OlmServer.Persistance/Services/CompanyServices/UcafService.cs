@@ -25,7 +25,7 @@ namespace OlmServer.Persistance.Services.CompanyServices
             _mapper = mapper;
         }
 
-        public async Task CreateUcafAsync(UcafCreateRequest request)
+        public async Task CreateUcafAsync(UcafCreateCommand request)
         {
 
             _context = (CompanyDbContext)_contextService.CreateDbContextInstance(request.CompanyId);

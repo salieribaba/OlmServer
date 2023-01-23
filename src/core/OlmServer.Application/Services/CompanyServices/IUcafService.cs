@@ -4,6 +4,6 @@ namespace OlmServer.Application.Services.CompanyServices
 {
     public interface IUcafService
     {
-        Task CreateUcafAsync(UcafCreateRequest request);
+        Task CreateUcafAsync(UcafCreateCommand request);
     }
 }

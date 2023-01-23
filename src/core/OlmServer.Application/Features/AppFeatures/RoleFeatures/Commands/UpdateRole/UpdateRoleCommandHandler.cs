@@ -1,21 +1,19 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using OlmServer.Application.Messaging;
 using OlmServer.Application.Services.AppServices;
 using OlmServer.Domain.AppEntities.Identity;
 
 namespace OlmServer.Application.Features.AppFeatures.RoleFeatures.Commands.UpdateRole
 {
-    public class UpdateRoleHandler : IRequestHandler<UpdateRoleRequest, UpdateRoleResponse>
+    public class UpdateRoleCommandHandler : ICommandHandler<UpdateRoleCommand, UpdateRoleCommandResponse>
     {
         private readonly IRoleService _roleService;
 
-        public UpdateRoleHandler(IRoleService roleService = null)
+        public UpdateRoleCommandHandler(IRoleService roleService = null)
         {
             _roleService = roleService;
         }
 
-        public async Task<UpdateRoleResponse> Handle(UpdateRoleRequest request, CancellationToken cancellationToken)
+        public async Task<UpdateRoleCommandResponse> Handle(UpdateRoleCommand request, CancellationToken cancellationToken)
         {
             AppRole role = await _roleService.GetByCode(request.Id);
 
@@ -36,5 +34,5 @@ namespace OlmServer.Application.Features.AppFeatures.RoleFeatures.Commands.Updat
         }
 
     }
-    
+
 }

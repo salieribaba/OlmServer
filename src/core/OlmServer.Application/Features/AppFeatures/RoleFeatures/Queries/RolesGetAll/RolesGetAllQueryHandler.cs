@@ -1,25 +1,22 @@
-﻿using MediatR;
+﻿using OlmServer.Application.Messaging;
 using OlmServer.Application.Services.AppServices;
 using OlmServer.Domain.AppEntities.Identity;
 
 namespace OlmServer.Application.Features.AppFeatures.RoleFeatures.Queries.RolesGetAll
 {
-    public sealed class RolesGetAllHandler : IRequestHandler<RolesGetAllRequest, RolesGetAllResponse>
+    public sealed class RolesGetAllQueryHandler : IQueryHandler<RolesGetAllQuery, RolesGetAllQueryResponse>
     {
         private readonly IRoleService _roleService;
 
-        public RolesGetAllHandler(IRoleService roleService)
+        public RolesGetAllQueryHandler(IRoleService roleService)
         {
             _roleService = roleService;
         }
 
-        public async Task<RolesGetAllResponse> Handle(RolesGetAllRequest request, CancellationToken cancellationToken)
+        public async Task<RolesGetAllQueryResponse> Handle(RolesGetAllQuery request, CancellationToken cancellationToken)
         {
             IList<AppRole> roles = await _roleService.GetAllRolesAsync();
-            return new()
-            {
-                Roles = roles
-            };
+            return new(roles);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace OlmServer.Application.Services.AppServices
 {
     public interface ICompanyService
     {
-        Task CreateCompany(CompanyCreateRequest companyCreateRequest);
+        Task CreateCompany(CompanyCommandCreate companyCreateRequest);
         Task<Company?> GetCompanyByName(string name);
         Task MigrateCompanyDatabase();
     }

@@ -2,8 +2,5 @@
 
 namespace OlmServer.Application.Features.AppFeatures.RoleFeatures.Queries.RolesGetAll
 {
-    public sealed class RolesGetAllResponse
-    {
-        public IList<AppRole> Roles { get; set; }
-    }
+    public sealed record RolesGetAllQueryResponse(IList<AppRole> Roles);
 }

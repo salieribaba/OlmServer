@@ -22,7 +22,7 @@ namespace OlmServer.Persistance.Services.AppServices
             _mapper = mapper;
         }
 
-        public async Task CreateCompany(CompanyCreateRequest request)
+        public async Task CreateCompany(CompanyCommandCreate request)
         {
             Company company = _mapper.Map<Company>(request);
             company.Id = Guid.NewGuid().ToString();

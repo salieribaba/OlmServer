@@ -1,23 +1,23 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OlmServer.Application.Abstractions;
+using OlmServer.Application.Messaging;
 using OlmServer.Domain.AppEntities.Identity;
 
 namespace OlmServer.Application.Features.AppFeatures.AppUserFeature.Login
 {
-    public class LoginHandler : IRequestHandler<LoginRequest, LoginResponse>
+    public class LoginCommandHandler : ICommandHandler<LoginCommand, LoginCommandResponse>
     {
         private readonly IJwtProvider _jwtProvider;
         private readonly UserManager<AppUser> _userManager;
 
-        public LoginHandler(IJwtProvider jwtProvider, UserManager<AppUser> userManager = null)
+        public LoginCommandHandler(IJwtProvider jwtProvider, UserManager<AppUser> userManager = null)
         {
             _jwtProvider = jwtProvider;
             _userManager = userManager;
         }
 
-        public async Task<LoginResponse> Handle(LoginRequest request, CancellationToken cancellationToken)
+        public async Task<LoginCommandResponse> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
             AppUser user = await _userManager.Users.Where(p => p.Email == request.EmailOrUserName || p.UserName == request.EmailOrUserName).FirstOrDefaultAsync();
 
@@ -28,14 +28,10 @@ namespace OlmServer.Application.Features.AppFeatures.AppUserFeature.Login
 
             List<string> roles = new();
 
-            LoginResponse response = new()
-            {
-                Email = user.Email,
-                NameLastName = user.NameLastName,
-                UserId = user.Id,
-                Token = await _jwtProvider.GenerateTokenAsync(user, roles)
-            };
-
+            LoginCommandResponse response = new
+                (user.Email, 
+                user.NameLastName, 
+                user.Id, await _jwtProvider.GenerateTokenAsync(user, roles));
             return response;
 
         }

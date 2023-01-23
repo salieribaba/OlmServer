@@ -15,24 +15,24 @@ namespace OlmServer.Presentation.Controller
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> CreateRole(CreateRoleRequest request)
+        public async Task<IActionResult> CreateRole(CreateRoleCommand request)
         {
-            CreateRoleResponse response = await _mediator.Send(request);
+            CreateRoleComandResponse response = await _mediator.Send(request);
             return Ok(response);
         }
 
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAllRoles()
         {
-            RolesGetAllRequest request = new();
-            RolesGetAllResponse response = await _mediator.Send(request);
+            RolesGetAllQuery request = new();
+            RolesGetAllQueryResponse response = await _mediator.Send(request);
             return Ok(response);
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> UpdateRole(UpdateRoleRequest request)
+        public async Task<IActionResult> UpdateRole(UpdateRoleCommand request)
         {
-            UpdateRoleResponse response = await _mediator.Send(request);
+            UpdateRoleCommandResponse response = await _mediator.Send(request);
             return Ok(response);
         }
 
@@ -40,8 +40,8 @@ namespace OlmServer.Presentation.Controller
         [HttpDelete("[action]/{id}")]
         public async Task<IActionResult> DeleteRole(string id)
         {
-            DeleteRoleRequest request = new() { Id = id };
-            DeleteRoleResponse response = await _mediator.Send(request);
+            DeleteRoleCommand request = new(id);
+            DeleteRoleCommandResponse response = await _mediator.Send(request);
             return Ok(response);
         }
 

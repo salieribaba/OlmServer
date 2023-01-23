@@ -12,9 +12,9 @@ namespace OlmServer.Persistance.Mapping
     {
         public MappingProfile()
         {
-             CreateMap<CompanyCreateRequest, Company>();
-             CreateMap<UcafCreateRequest, UniformChartOfAccount>();
-            CreateMap<CreateRoleRequest, AppRole>();
+             CreateMap<CompanyCommandCreate, Company>();
+             CreateMap<UcafCreateCommand, UniformChartOfAccount>();
+            CreateMap<CreateRoleCommand, AppRole>();
 
         }
     }
