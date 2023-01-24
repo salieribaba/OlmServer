@@ -12,20 +12,22 @@ namespace OlmServer.Persistance.Services.CompanyServices
     {
         private readonly IUcafCommandRepository _commandRepository;
         private readonly IContextService _contextService;
+        private readonly IUcafQueryRepository _queryRepository;
         private CompanyDbContext _context;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
 
-        public UcafService(IUcafCommandRepository commandRepository, IContextService contextService = null, IUnitOfWork unitOfWork = null, IMapper mapper = null)
+        public UcafService(IUcafCommandRepository commandRepository, IContextService contextService = null, IUnitOfWork unitOfWork = null, IMapper mapper = null, IUcafQueryRepository queryRepository = null)
         {
             _commandRepository = commandRepository;
             _contextService = contextService;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _queryRepository = queryRepository;
         }
 
-        public async Task CreateUcafAsync(UcafCreateCommand request)
+        public async Task CreateUcafAsync(UcafCreateCommand request, CancellationToken cancellationToken)
         {
 
             _context = (CompanyDbContext)_contextService.CreateDbContextInstance(request.CompanyId);
@@ -36,8 +38,8 @@ namespace OlmServer.Persistance.Services.CompanyServices
             _mapper.Map<UniformChartOfAccount>(request);
 
             uniformChartOfAccount.Id = Guid.NewGuid().ToString();
-            await _commandRepository.AddAsync(uniformChartOfAccount);
-            _ = await _unitOfWork.SaveChangesAsync();
+            await _commandRepository.AddAsync(uniformChartOfAccount, cancellationToken);
+            _ = await _unitOfWork.SaveChangesAsync(cancellationToken);
 
 
 
@@ -45,6 +47,11 @@ namespace OlmServer.Persistance.Services.CompanyServices
 
 
 
+        }
+
+        public async Task<UniformChartOfAccount> GetByCode(string code)
+        {
+            return await _queryRepository.GetByExpressionAsync(x => x.Code == code);
         }
     }
 }

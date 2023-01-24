@@ -1,5 +1,6 @@
 ﻿using OlmServer.Application.Messaging;
 using OlmServer.Application.Services.CompanyServices;
+using OlmServer.Domain.CompanyEntities;
 
 namespace OlmServer.Application.Features.CompanyFeatures.UcafFeatures.Commands.UcafCreate
 {
@@ -14,7 +15,12 @@ namespace OlmServer.Application.Features.CompanyFeatures.UcafFeatures.Commands.U
 
         public async Task<UcafCreateCommandResponse> Handle(UcafCreateCommand request, CancellationToken cancellationToken)
         {
-            await _ucafService.CreateUcafAsync(request);
+            UniformChartOfAccount ucaf = await _ucafService.GetByCode(request.Code);
+            if (ucaf != null) throw new Exception("Bu hesap planı kodu daha önce tanımlanmış.");
+            
+
+            
+            await _ucafService.CreateUcafAsync(request,cancellationToken);
             return new();
         }
     }

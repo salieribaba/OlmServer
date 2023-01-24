@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using OlmServer.Application.Features.AppFeatures.AppUserFeature.Login;
+using OlmServer.Application.Features.AppFeatures.AppUserFeature.Commands.Login;
 using OlmServer.Presentation.Abstractions;
 
 namespace OlmServer.Presentation.Controller

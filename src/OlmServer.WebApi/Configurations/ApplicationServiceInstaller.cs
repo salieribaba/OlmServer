@@ -1,5 +1,7 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using OlmServer.Application;
+using OlmServer.Application.Behavior;
 
 namespace OlmServer.WebApi.Configurations
 {
@@ -7,11 +9,12 @@ namespace OlmServer.WebApi.Configurations
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
-            //mediatr kütüphanesini ekle
             services.AddMediatR(typeof(AssemblyReference).Assembly);
-           
 
+            services.AddTransient(typeof(IPipelineBehavior<,>), (typeof(ValidationBehavior<,>)));
 
+            services.AddValidatorsFromAssembly(typeof(AssemblyReference).Assembly);
         }
+
     }
 }

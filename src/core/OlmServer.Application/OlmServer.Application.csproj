@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.4.0" />
     <PackageReference Include="MediatR" Version="11.1.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\AppFeatures\AppUserFeature\Queries\" />
     <Folder Include="Features\AppFeatures\Companyfeatures\Queries\" />
     <Folder Include="Features\CompanyFeatures\UcafFeatures\Queries\" />
   </ItemGroup>

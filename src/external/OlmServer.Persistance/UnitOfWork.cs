@@ -12,9 +12,9 @@ namespace OlmServer.Persistance
             _dbContext = (CompanyDbContext)dbContext;
         }
 
-        public async Task<int> SaveChangesAsync()
+        public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-          int count= await _dbContext.SaveChangesAsync();
+          int count= await _dbContext.SaveChangesAsync(cancellationToken);
             return count;
             
         }

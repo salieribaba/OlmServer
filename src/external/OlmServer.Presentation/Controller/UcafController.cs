@@ -12,9 +12,9 @@ namespace OlmServer.Presentation.Controller
         }
 
         [HttpPost("[action]")]
-        public async  Task<IActionResult> CreateUcaf(UcafCreateCommand request)
+        public async  Task<IActionResult> CreateUcaf(UcafCreateCommand request, CancellationToken cancellationToken = default)
         {
-           UcafCreateCommandResponse response= await _mediator.Send(request);
+            UcafCreateCommandResponse response = await _mediator.Send(request, cancellationToken);
             return Ok(response);
 
         }

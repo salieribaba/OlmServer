@@ -20,7 +20,7 @@ namespace OlmServer.Application.Features.AppFeatures.Companyfeatures.Commands.Co
             {
                 throw new Exception("Bu şirket adı daha önce kullanılmıştır. Lütfen değiştirip yeniden deneyiniz.");
             }
-            await _companyService.CreateCompany(request);
+            await _companyService.CreateCompany(request, cancellationToken);
 
             return new();
         }

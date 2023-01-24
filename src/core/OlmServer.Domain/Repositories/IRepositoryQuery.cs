@@ -10,9 +10,6 @@ namespace OlmServer.Domain.Repositories
         Task<T> GetByIdAsync(string id, bool isTracking = true);
         Task<T> GetFirstAsync( bool isTracking = true);
         Task<T> GetByExpressionAsync(Expression<Func<T, bool>> expression, bool isTracking = true);
-        
-        
-        
     }
    
 }

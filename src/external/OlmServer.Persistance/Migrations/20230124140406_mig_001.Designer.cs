@@ -12,8 +12,8 @@ using OlmServer.Persistance.Contexts;
 namespace OlmServer.Persistance.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230122121914_mig_003")]
-    partial class mig003
+    [Migration("20230124140406_mig_001")]
+    partial class mig001
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -92,22 +92,22 @@ namespace OlmServer.Persistance.Migrations
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ServerName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ServerPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ServerUserId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TaxAdministration")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Website")

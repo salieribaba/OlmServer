@@ -89,22 +89,22 @@ namespace OlmServer.Persistance.Migrations
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ServerName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ServerPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ServerUserId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TaxAdministration")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Website")

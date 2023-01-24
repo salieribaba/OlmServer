@@ -5,7 +5,7 @@ namespace OlmServer.Domain
     public interface IUnitOfWork
     {
         void SetDbContextInstance(DbContext dbContext);
-        Task<int> SaveChangesAsync();
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 
     }
 }

@@ -31,10 +31,10 @@ namespace OlmServer.Persistance.Services.AppServices
             _ = await _roleManager.DeleteAsync(appRole);
         }
 
-        public Task<AppRole> GetByCode(string code)
+        public async Task<AppRole> GetByCode(string code)
         {
-            AppRole role = _roleManager.Roles.FirstOrDefault(r => r.Code == code);
-            return Task.FromResult(role);
+            AppRole role = await _roleManager.Roles.FirstOrDefaultAsync(p => p.Code == code);
+            return role;
         }
 
         public Task<AppRole> GetById(string id)

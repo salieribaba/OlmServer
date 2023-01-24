@@ -15,9 +15,9 @@ namespace OlmServer.Presentation.Controller
 
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> CreateCompany(CompanyCommandCreate request)
+        public async Task<IActionResult> CreateCompany(CompanyCommandCreate request, CancellationToken cancellationToken = default)
         {
-            CompanyCommandCreateResponse response = await _mediator.Send(request);
+            CompanyCommandCreateResponse response = await _mediator.Send(request, cancellationToken);
             return Ok(response);
         }
 

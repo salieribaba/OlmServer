@@ -12,7 +12,7 @@ using OlmServer.Persistance.Contexts;
 namespace OlmServer.Persistance.Migrations.CompanyDb
 {
     [DbContext(typeof(CompanyDbContext))]
-    [Migration("20230121055407_mig_001")]
+    [Migration("20230124140712_mig_001")]
     partial class mig001
     {
         /// <inheritdoc />
@@ -31,9 +31,6 @@ namespace OlmServer.Persistance.Migrations.CompanyDb
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CompanyId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
