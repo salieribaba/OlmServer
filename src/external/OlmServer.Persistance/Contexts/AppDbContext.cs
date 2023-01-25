@@ -18,6 +18,9 @@ namespace OlmServer.Persistance.Contexts
 
         public DbSet<Company> Companies { get; set; }
         public DbSet<AppUsersCompany> CompanyUsers { get; set; }
+        public DbSet<MainRole> MainRoles { get; set; }
+        public DbSet<MainRoleAndRoleRelationShip> MainRoleAndRoleRelationShips { get; set; }
+        public DbSet<MainRoleAndUserRelationShip> MainRoleAndUserRelationShips { get; set; }
 
 
 

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using OlmServer.Application.Features.AppFeatures.RoleFeatures.Commands.CreateAllRoles;
 using OlmServer.Application.Features.AppFeatures.RoleFeatures.Commands.CreateRole;
 using OlmServer.Application.Features.AppFeatures.RoleFeatures.Commands.DeleteRole;
 using OlmServer.Application.Features.AppFeatures.RoleFeatures.Commands.UpdateRole;
@@ -45,7 +46,13 @@ namespace OlmServer.Presentation.Controller
             return Ok(response);
         }
 
-
+        [HttpGet("[action]")]
+        public async Task<IActionResult> CreateAllRoles()
+        {
+            CreateAllRolesCommand request = new();
+            CreateAllRolesCommandResponse response = await _mediator.Send(request);
+            return Ok(response);
+        }
 
 
 

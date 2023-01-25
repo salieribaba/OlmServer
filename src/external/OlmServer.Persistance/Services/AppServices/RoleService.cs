@@ -55,5 +55,16 @@ namespace OlmServer.Persistance.Services.AppServices
             return _roleManager.UpdateAsync(appRole);
 
         }
+
+        public async Task AddRangeAsync(IEnumerable<AppRole> roles)
+        {
+            foreach (AppRole role in roles)
+            {
+                _ =await _roleManager.CreateAsync(role);
+            }
+            
+            
+           
+        }
     }
 }

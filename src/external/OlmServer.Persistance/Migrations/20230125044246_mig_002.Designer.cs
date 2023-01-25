@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OlmServer.Persistance.Contexts;
 
@@ -11,9 +12,11 @@ using OlmServer.Persistance.Contexts;
 namespace OlmServer.Persistance.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230125044246_mig_002")]
+    partial class mig002
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -204,90 +207,6 @@ namespace OlmServer.Persistance.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("OlmServer.Domain.AppEntities.MainRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CompanyId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRoleCreatedByAdmin")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("MainRoles");
-                });
-
-            modelBuilder.Entity("OlmServer.Domain.AppEntities.MainRoleAndRoleRelationShip", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MainRoleId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MainRoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("MainRoleAndRoleRelationShips");
-                });
-
-            modelBuilder.Entity("OlmServer.Domain.AppEntities.MainRoleAndUserRelationShip", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CompanyId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MainRoleId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("MainRoleId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("MainRoleAndUserRelationShips");
-                });
-
             modelBuilder.Entity("OlmServer.Domain.AppEntities.AppUsersCompany", b =>
                 {
                     b.HasOne("OlmServer.Domain.AppEntities.Identity.AppUser", "AppUser")
@@ -301,51 +220,6 @@ namespace OlmServer.Persistance.Migrations
                     b.Navigation("AppUser");
 
                     b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("OlmServer.Domain.AppEntities.MainRole", b =>
-                {
-                    b.HasOne("OlmServer.Domain.AppEntities.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId");
-
-                    b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("OlmServer.Domain.AppEntities.MainRoleAndRoleRelationShip", b =>
-                {
-                    b.HasOne("OlmServer.Domain.AppEntities.MainRole", "MainRole")
-                        .WithMany()
-                        .HasForeignKey("MainRoleId");
-
-                    b.HasOne("OlmServer.Domain.AppEntities.Identity.AppRole", "AppRole")
-                        .WithMany()
-                        .HasForeignKey("RoleId");
-
-                    b.Navigation("AppRole");
-
-                    b.Navigation("MainRole");
-                });
-
-            modelBuilder.Entity("OlmServer.Domain.AppEntities.MainRoleAndUserRelationShip", b =>
-                {
-                    b.HasOne("OlmServer.Domain.AppEntities.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId");
-
-                    b.HasOne("OlmServer.Domain.AppEntities.MainRole", "MainRole")
-                        .WithMany()
-                        .HasForeignKey("MainRoleId");
-
-                    b.HasOne("OlmServer.Domain.AppEntities.Identity.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("AppUser");
-
-                    b.Navigation("Company");
-
-                    b.Navigation("MainRole");
                 });
 #pragma warning restore 612, 618
         }
