@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using OlmServer.Application.Features.CompanyFeatures.UcafFeatures.Commands.UcafCreate;
 using OlmServer.Application.Services.CompanyServices;
 using OlmServer.Domain;
 using OlmServer.Domain.CompanyEntities;
-using OlmServer.Domain.UcafRepositories;
+using OlmServer.Domain.Repositories.GenericRepositories.UcafRepositories;
+using OlmServer.Domain.UnitOfWorks;
 using OlmServer.Persistance.Contexts;
 
 namespace OlmServer.Persistance.Services.CompanyServices
@@ -14,11 +16,11 @@ namespace OlmServer.Persistance.Services.CompanyServices
         private readonly IContextService _contextService;
         private readonly IUcafQueryRepository _queryRepository;
         private CompanyDbContext _context;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly ICompanyDbUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
 
-        public UcafService(IUcafCommandRepository commandRepository, IContextService contextService = null, IUnitOfWork unitOfWork = null, IMapper mapper = null, IUcafQueryRepository queryRepository = null)
+        public UcafService(IUcafCommandRepository commandRepository, IContextService contextService = null, ICompanyDbUnitOfWork unitOfWork = null, IMapper mapper = null, IUcafQueryRepository queryRepository = null)
         {
             _commandRepository = commandRepository;
             _contextService = contextService;
@@ -51,7 +53,7 @@ namespace OlmServer.Persistance.Services.CompanyServices
 
         public async Task<UniformChartOfAccount> GetByCode(string code)
         {
-            return await _queryRepository.GetByExpressionAsync(x => x.Code == code);
+            return await _queryRepository.GetAllWhere(x => x.Code == code).FirstAsync();
         }
     }
 }

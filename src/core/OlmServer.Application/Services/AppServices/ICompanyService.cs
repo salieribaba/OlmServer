@@ -6,7 +6,7 @@ namespace OlmServer.Application.Services.AppServices
     public interface ICompanyService
     {
         Task CreateCompany(CompanyCommandCreate companyCreateRequest, CancellationToken cancellationToken);
-        Task<Company?> GetCompanyByName(string name);
+        Task<Company?> GetCompanyByName(string name, CancellationToken cancellationToken = default);
         Task MigrateCompanyDatabase();
     }
 }

@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OlmServer.Domain;
+using OlmServer.Domain.UnitOfWorks;
 using OlmServer.Persistance.Contexts;
 
-namespace OlmServer.Persistance
+namespace OlmServer.Persistance.UnitOfWorks
 {
-    public sealed class UnitOfWork : IUnitOfWork
+    public sealed class CompanyDbUnitOfWork : ICompanyDbUnitOfWork
     {
         private CompanyDbContext _dbContext;
         public void SetDbContextInstance(DbContext dbContext)
@@ -14,9 +14,9 @@ namespace OlmServer.Persistance
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-          int count= await _dbContext.SaveChangesAsync(cancellationToken);
+            int count = await _dbContext.SaveChangesAsync(cancellationToken);
             return count;
-            
+
         }
     }
 }

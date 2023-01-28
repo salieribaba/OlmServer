@@ -1,28 +1,30 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OlmServer.Domain.AppEntities.Abstractions;
-using OlmServer.Domain.Repositories;
+using OlmServer.Domain.Repositories.GenericRepositories.AppDbContexts;
 using OlmServer.Persistance.Contexts;
 
-namespace OlmServer.Persistance.Repositories
+namespace OlmServer.Persistance.Repositories.GenericRepositories.AppDbContexts
 {
-    public class RepositoryCommand<T> : IRepositoryCommand<T> where T : BaseEntity 
+    public class AppCommandRepository<T> : IAppCommandRepository<T> where T : BaseEntity
     {
-        public static readonly Func<CompanyDbContext, string, Task<T>> GetEntityById =
-            EF.CompileAsyncQuery((CompanyDbContext context, string id) =>
-            context.Set<T>().FirstOrDefault(x => x.Id == id));
+        public static readonly Func<AppDbContext, string, Task<T>> GetEntityById =
+        EF.CompileAsyncQuery((AppDbContext context, string id) =>
+        context.Set<T>().FirstOrDefault(x => x.Id == id));
         
-        private CompanyDbContext _context;
+        
+        private readonly AppDbContext _context;
 
-        public DbSet<T> Entity { get; set; }
-
-        public void SetDbContextInstance(DbContext dbContext)
+        public AppCommandRepository(AppDbContext context)
         {
-            _context = dbContext as CompanyDbContext;
+            _context = context;
             Entity = _context.Set<T>();
         }
+
+        public DbSet<T> Entity { get ; set ; }
+
         public async Task AddAsync(T entity, CancellationToken cancellationToken = default)
         {
-            await Entity.AddAsync(entity,cancellationToken);
+            await Entity.AddAsync(entity, cancellationToken);
         }
 
         public async Task AddRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default)

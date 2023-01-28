@@ -27,7 +27,6 @@
   <ItemGroup>
     <Folder Include="CompanyFeature\Queries\" />
     <Folder Include="Features\AppFeatures\AppUserFeature\Commands\Login\" />
-    <Folder Include="Features\AppFeatures\AppUserFeature\Queries\" />
     <Folder Include="Features\AppFeatures\CompanyFeatures\UcafFeatures\Queries\" />
   </ItemGroup>
 

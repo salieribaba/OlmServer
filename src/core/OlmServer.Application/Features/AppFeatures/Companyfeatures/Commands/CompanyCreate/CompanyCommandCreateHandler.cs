@@ -15,13 +15,10 @@ namespace OlmServer.Application.Features.AppFeatures.Companyfeatures.Commands.Co
 
         public async Task<CompanyCommandCreateResponse> Handle(CompanyCommandCreate request, CancellationToken cancellationToken)
         {
-            Company company = await _companyService.GetCompanyByName(request.Name);
-            if (company != null)
-            {
-                throw new Exception("Bu şirket adı daha önce kullanılmıştır. Lütfen değiştirip yeniden deneyiniz.");
-            }
-            await _companyService.CreateCompany(request, cancellationToken);
+            Company company = await _companyService.GetCompanyByName(request.Name, cancellationToken);
+            if (company != null) throw new Exception("Bu şirket adı daha önce kullanılmış!");
 
+            await _companyService.CreateCompany(request, cancellationToken);
             return new();
         }
     }

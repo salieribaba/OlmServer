@@ -1,8 +1,8 @@
 ﻿using OlmServer.Domain.AppEntities.Abstractions;
 
-namespace OlmServer.Domain.Repositories
+namespace OlmServer.Domain.Repositories.GenericRepositories
 {
-    public interface IRepositoryCommand<T>: IRepository<T> where T : BaseEntity
+    public interface ICommandGenericRepository<T> where T : BaseEntity
     {
         Task AddAsync(T entity, CancellationToken cancellationToken = default);
         Task AddRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default);
