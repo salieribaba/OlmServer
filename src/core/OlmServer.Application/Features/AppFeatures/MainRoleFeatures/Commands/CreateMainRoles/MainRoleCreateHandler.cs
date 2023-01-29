@@ -23,12 +23,12 @@ namespace OlmServer.Application.Features.AppFeatures.MainRoleFeatures.Commands.C
             MainRole mainRole = new(
                 Guid.NewGuid().ToString(),
                request.Title,
-               request.IsRoleCreatedByAdmin,
+              request.CompanyId != null ? false : true,
                request.CompanyId
 
                 );
             await _mainRoleService.CreateAsync(mainRole, cancellationToken);
-            return new ();
+            return new();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using OlmServer.Application.Features.AppFeatures.Companyfeatures.Commands.CompanyCreate;
+using OlmServer.Application.Features.AppFeatures.Companyfeatures.Queries.GetAllCompany;
 using OlmServer.Application.Features.AppFeatures.MigrateCompanyDatabase;
 using OlmServer.Presentation.Abstractions;
 
@@ -28,6 +29,14 @@ namespace OlmServer.Presentation.Controller
             MigrateCommandCompanyDatabaseResponse response = await _mediator.Send(request);
             return Ok(response);
 
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllCompanies()
+        {
+            GetAllCompanyQuery request = new();
+            GetAllCompanyResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
 
 

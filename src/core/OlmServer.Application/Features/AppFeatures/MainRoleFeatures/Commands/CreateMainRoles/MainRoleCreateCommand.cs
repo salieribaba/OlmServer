@@ -5,7 +5,6 @@ namespace OlmServer.Application.Features.AppFeatures.MainRoleFeatures.Commands.C
 {
     public record MainRoleCreateCommand(
         string Title,
-        bool IsRoleCreatedByAdmin = false,
         string CompanyId = null
         ) : ICommand<MainRoleCreateResponse>;
 }

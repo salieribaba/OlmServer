@@ -4,8 +4,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OlmServer.Domain.AppEntities
 {
-    public sealed class MainRoleAndRoleRelationShip:BaseEntity
+    public sealed class MainRoleAndRoleRelationShip : BaseEntity
     {
+        public MainRoleAndRoleRelationShip()
+        {
+
+        }
+        public MainRoleAndRoleRelationShip(string id, string roleId, string mainRoleId) : base(id)
+        {
+            RoleId = roleId;
+            MainRoleId = mainRoleId;
+        }
+
         [ForeignKey("MainRole")]
         public string MainRoleId { get; set; }
         [ForeignKey("AppRole")]

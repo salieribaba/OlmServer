@@ -11,8 +11,7 @@ namespace OlmServer.Persistance.Repositories.GenericRepositories.AppDbContexts
     {
         public static readonly Func<AppDbContext, string, bool, Task<T>> GetEntityById =
          EF.CompileAsyncQuery((AppDbContext context, string id, bool isTracking) =>
-       isTracking == true ? context.Set<T>().FirstOrDefault(x => x.Id == id) :
-        context.Set<T>().AsNoTracking().FirstOrDefault(x => x.Id == id));
+      context.Set<T>().FirstOrDefault(x => x.Id == id));
 
 
         private AppDbContext _context;

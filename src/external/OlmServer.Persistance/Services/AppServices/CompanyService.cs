@@ -33,6 +33,11 @@ namespace OlmServer.Persistance.Services.AppServices
             await _context.SaveChangesAsync(cancellationToken);
         }
 
+        public IQueryable<Company> GetAllCompanies()
+        {
+            return _companyQueryRepository.GetAll();
+        }
+
         public async Task<Company?> GetCompanyByName(string name, CancellationToken cancellationToken = default)
         {
             return await _companyQueryRepository.GetAllWhere(x => x.Name == name).FirstOrDefaultAsync();

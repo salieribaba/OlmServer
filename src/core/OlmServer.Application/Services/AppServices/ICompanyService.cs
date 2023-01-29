@@ -8,5 +8,6 @@ namespace OlmServer.Application.Services.AppServices
         Task CreateCompany(CompanyCommandCreate companyCreateRequest, CancellationToken cancellationToken);
         Task<Company?> GetCompanyByName(string name, CancellationToken cancellationToken = default);
         Task MigrateCompanyDatabase();
+        IQueryable<Company> GetAllCompanies();
     }
 }

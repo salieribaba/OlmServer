@@ -1,10 +1,11 @@
 ﻿using OlmServer.Domain.AppEntities.Identity;
+using OlmServer.Domain.Dtos;
 
 namespace OlmServer.Application.Abstractions
 {
     public interface IJwtProvider
     {
-        Task<string> GenerateTokenAsync(AppUser user, List<string> roles);
-        
+        Task<TokenRefreshTokenDto> CreateTokenAsync(AppUser user);
+
     }
 }

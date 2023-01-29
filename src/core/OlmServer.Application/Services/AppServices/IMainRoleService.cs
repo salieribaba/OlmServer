@@ -8,5 +8,12 @@ namespace OlmServer.Application.Services.AppServices
         Task<MainRole> GetByTitleAndCompanyId(string title, string companyId, CancellationToken cancellationToken);
         Task CreateRangeAsync(List<MainRole> newMainRoles, CancellationToken cancellationToken);
         IQueryable<MainRole> GetAll(CancellationToken cancellationToken);
+        Task RemoveByIdAsync(string id);
+        Task<MainRole> GetByIdAsync(string id);
+        Task UpdateAsync(MainRole mainRole);
+
+
+
+
     }
 }
