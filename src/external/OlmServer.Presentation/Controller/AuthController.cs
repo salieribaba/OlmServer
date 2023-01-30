@@ -12,7 +12,6 @@ namespace OlmServer.Presentation.Controller
         {
         }
 
-        [HttpPost("action")]
 
         [HttpPost("[action]")]
         public async Task<IActionResult> Login(LoginCommand request)

@@ -28,6 +28,7 @@ namespace OlmServer.Persistance.Services.AppServices
         public IQueryable<MainRoleAndRoleRelationShip> GetAll()
         {
             return _queryRepository.GetAll();
+
         }
 
         public async Task<MainRoleAndRoleRelationShip> GetByIdAsync(string id)

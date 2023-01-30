@@ -16,10 +16,13 @@ namespace OlmServer.Application.Features.AppFeatures.MainRoleAndRoleRelationShip
         public async Task<GetAllMainRoleAndRoleRelationShipQueryResponse> Handle(GetAllMainRoleAndRoleRelationShipQuery request, CancellationToken cancellationToken)
         {
             return new(await _roleRelationshipService
-            .GetAll()
-            .Include("AppRole")
-            .Include("MainRole")
-            .ToListAsync());
+             .GetAll()
+             .Include("AppRole")
+             .Include("MainRole")
+             .ToListAsync());
+
+
+
         }
     }
 }
