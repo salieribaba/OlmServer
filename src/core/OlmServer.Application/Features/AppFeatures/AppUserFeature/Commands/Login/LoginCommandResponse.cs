@@ -8,6 +8,8 @@ namespace OlmServer.Application.Features.AppFeatures.AppUserFeature.Commands.Log
         string UserId,
         string NameLastName,
         IList<CompanyDto> Companies,
+        int Year,
         CompanyDto Company);
+
 
 }

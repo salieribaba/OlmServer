@@ -3,5 +3,9 @@ using OlmServer.Application.Messaging;
 
 namespace OlmServer.Application.Features.CompanyFeatures.UcafFeatures.Commands.UcafCreate
 {
-    public sealed record UcafCreateCommand(string CompanyId, string Name, string Code, string Type) : ICommand<UcafCreateCommandResponse>;
+    public sealed record UcafCreateCommand(
+        string Code,
+        string Name,
+        string Type,
+        string CompanyId) : ICommand<UcafCreateCommandResponse>;
 }

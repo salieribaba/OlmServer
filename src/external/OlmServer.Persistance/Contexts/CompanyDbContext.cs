@@ -12,7 +12,7 @@ namespace OlmServer.Persistance.Contexts
         {
             if (company != null)
             {
-                if (company.ServerUserId == "")
+                if (String.IsNullOrEmpty(company.ServerUserId))
                     ConnectionString = $"" +
                         $"Data Source={company.ServerName};" +
                         $"Initial Catalog={company.DatabaseName};" +
@@ -40,13 +40,13 @@ namespace OlmServer.Persistance.Contexts
 
         override protected void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(ConnectionString);
+            _ = optionsBuilder.UseSqlServer(ConnectionString);
         }
 
         override protected void OnModelCreating(ModelBuilder modelBuilder) =>
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AssemblyReference).Assembly);
 
-        
+
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

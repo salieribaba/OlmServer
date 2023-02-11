@@ -19,9 +19,12 @@ namespace OlmServer.UnitTest.CompanyFeature.Commands
         [Fact]
         public async Task UcafShouldBeNull()
         {
-            UniformChartOfAccount ucaf = await _ucafService.Object.GetByCode("100.01.001");
-            Assert.Null(ucaf);
+            string companyId = "585985c0-4576-4d62-ae67-59a6f72ae906";
+            string code = "100.01.001";
+            UniformChartOfAccount ucaf = await _ucafService.Object.GetByCodeAsync(companyId, code, default);
+            ucaf.ShouldBeNull();
         }
+
 
         [Fact]
         public async Task UcafCreateCommandResponse()

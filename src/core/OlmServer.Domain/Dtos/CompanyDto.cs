@@ -2,6 +2,7 @@
 {
     public record CompanyDto(
     string CompanyId,
-    string CompanyName);
+    string CompanyName
+    );
 
 }

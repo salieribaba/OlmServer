@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using OlmServer.WebApi.OptionsSetup;
-using System.Text;
 
 namespace OlmServer.WebApi.Configurations
 {
@@ -9,12 +7,13 @@ namespace OlmServer.WebApi.Configurations
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.ConfigureOptions(typeof(JwtOptionsSetup));
+            _ = services.ConfigureOptions(typeof(JwtOptionsSetup));
 
-            services.ConfigureOptions(typeof(JwtBearerOptionsSetup));
-            
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            _ = services.ConfigureOptions(typeof(JwtBearerOptionsSetup));
+
+            _ = services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer();
+            _ = services.AddAuthorization();
 
         }
     }

@@ -6,7 +6,6 @@ using OlmServer.Domain.AppEntities;
 using OlmServer.Domain.Repositories.GenericRepositories.AppDbContexts.CompanyRepositories;
 using OlmServer.Domain.UnitOfWorks;
 using OlmServer.Persistance.Contexts;
-using OlmServer.Persistance.UnitOfWorks;
 
 namespace OlmServer.Persistance.Services.AppServices
 {
@@ -17,6 +16,7 @@ namespace OlmServer.Persistance.Services.AppServices
         private readonly ICompanyQueryRepository _companyQueryRepository;
         private readonly IAppUnitOfWork _context;
         private readonly IMapper _mapper;
+
         public CompanyService(IMapper mapper, ICompanyCommandRepository companyCommandRepository = null, ICompanyQueryRepository companyQueryRepository = null, IAppUnitOfWork context = null)
         {
             _mapper = mapper;
@@ -30,7 +30,7 @@ namespace OlmServer.Persistance.Services.AppServices
             Company company = _mapper.Map<Company>(request);
             company.Id = Guid.NewGuid().ToString();
             await _companyCommandRepository.AddAsync(company, cancellationToken);
-            await _context.SaveChangesAsync(cancellationToken);
+            _ = await _context.SaveChangesAsync(cancellationToken);
         }
 
         public IQueryable<Company> GetAllCompanies()

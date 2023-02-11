@@ -11,7 +11,6 @@ namespace OlmServer.Persistance.Repositories.GenericRepositories.CompanyDbContex
 
         public static readonly Func<CompanyDbContext, string, bool, Task<T>> GetEntityById =
          EF.CompileAsyncQuery((CompanyDbContext context, string id, bool isTracking) =>
-       isTracking == true ? context.Set<T>().FirstOrDefault(x => x.Id == id) :
         context.Set<T>().AsNoTracking().FirstOrDefault(x => x.Id == id));
 
 
@@ -68,7 +67,7 @@ namespace OlmServer.Persistance.Repositories.GenericRepositories.CompanyDbContex
 
         public async Task<T> GetByExpressionAsync(Expression<Func<T, bool>> expression, CancellationToken cancellationToken = default, bool isTracking = true)
         {
-            T entity = null;
+            T entity;
             if (!isTracking)
                 entity = await Entity.AsNoTracking().Where(expression).FirstOrDefaultAsync();
             else

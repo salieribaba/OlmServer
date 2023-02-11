@@ -9,7 +9,11 @@ namespace OlmServer.WebApi.Configurations
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<ExceptionMiddleware>();
+            _ = services.AddScoped<ExceptionMiddleware>();
+            _ = services.AddCors(options => options.AddDefaultPolicy(options =>
+            {
+                _ = options.AllowAnyHeader().AllowAnyMethod().AllowCredentials().SetIsOriginAllowed(options => true);
+            }));
             _ = services.AddControllers().AddApplicationPart(typeof(AssemblyReference).Assembly);
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

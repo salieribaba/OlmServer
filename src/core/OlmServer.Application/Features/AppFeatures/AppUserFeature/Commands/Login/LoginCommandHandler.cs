@@ -32,7 +32,7 @@ namespace OlmServer.Application.Features.AppFeatures.AppUserFeature.Commands.Log
 
             IList<AppUsersCompany> companies = await _authService.GetCompanyListByUserIdAsync(user.Id);
             IList<CompanyDto> companiesDto = companies.Select(s => new CompanyDto(
-                s.Id, s.Company.Name)).ToList();
+                s.Company.Id, s.Company.Name)).ToList();
 
             if (companies.Count() == 0) throw new Exception("Herhangi bir şirkete kayıtlı değilsiniz!");
 
@@ -42,7 +42,8 @@ namespace OlmServer.Application.Features.AppFeatures.AppUserFeature.Commands.Log
                 UserId: user.Id,
                 NameLastName: user.NameLastName,
                 Companies: companiesDto,
-                Company: companiesDto[0]
+                Company: companiesDto[0],
+                Year: DateTime.Now.Year
                 );
 
             return response;

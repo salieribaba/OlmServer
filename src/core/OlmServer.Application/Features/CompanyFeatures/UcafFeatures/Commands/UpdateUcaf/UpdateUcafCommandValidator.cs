@@ -1,11 +1,14 @@
 ﻿using FluentValidation;
 
-namespace OlmServer.Application.Features.CompanyFeatures.UcafFeatures.Commands.UcafCreate
+namespace OlmServer.Application.Features.CompanyFeatures.UcafFeatures.Commands.UpdateUcaf
 {
-    public class UcafCreateValidator : AbstractValidator<UcafCreateCommand>
+    public class UpdateUcafCommandValidator : AbstractValidator<UpdateUcafCommand>
     {
-        public UcafCreateValidator()
+        public UpdateUcafCommandValidator()
         {
+            _ = RuleFor(x => x.Id).NotEmpty().WithMessage("{Property.Name} alanı gereklidir");
+            _ = RuleFor(x => x.Id).NotNull().WithMessage("{Property.Name} alanı gereklidir");
+
             _ = RuleFor(x => x.CompanyId).NotEmpty().WithMessage("{Property.Name} alanı gereklidir");
             _ = RuleFor(x => x.CompanyId).NotNull().WithMessage("{Property.Name} alanı gereklidir");
 
@@ -19,7 +22,6 @@ namespace OlmServer.Application.Features.CompanyFeatures.UcafFeatures.Commands.U
             _ = RuleFor(x => x.Type).NotEmpty().WithMessage("{Property.Name} alanı gereklidir");
             _ = RuleFor(x => x.Type).NotNull().WithMessage("{Property.Name} alanı gereklidir");
             _ = RuleFor(x => x.Type).MaximumLength(1).WithMessage("{Property.Name} alanı en fazla bir karakterdir.");
-
         }
     }
 }
