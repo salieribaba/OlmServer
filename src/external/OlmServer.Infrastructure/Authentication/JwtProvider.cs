@@ -48,7 +48,7 @@ namespace OlmServer.Infrastructure.Authentication
 
             string refreshToken = Convert.ToBase64String(RandomNumberGenerator.GetBytes(32));
             user.RefreshToken = refreshToken;
-            user.RefreshTokenExpiryTime = expires.AddDays(1);
+            user.RefreshTokenExpiryTime = expires.AddMinutes(60);
             _ = await _userManager.UpdateAsync(user);
 
             return new(token, refreshToken, user.RefreshTokenExpiryTime);
